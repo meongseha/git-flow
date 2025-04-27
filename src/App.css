@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Git Branch Colors */
+:root {
+  --color-main: #0366D6;
+  --color-develop: #2EA44F;
+  --color-feature: #6F42C1;
+  --color-release: #F97F0E;
+  --color-hotfix: #D73A49;
+}
+
+/* Animation for branch creation */
+@keyframes branchGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.branch-line {
+  transform-origin: top;
+  animation: branchGrow 0.5s ease-out;
+}
+
+/* Animation for commit nodes */
+@keyframes commitPop {
+  0% {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.commit-node {
+  animation: commitPop 0.3s ease-out;
+}
+
+/* Terminal styling */
+.terminal {
+  background-color: #1E1E1E;
+  border-radius: 0.5rem;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+/* Code highlighting */
+.code-keyword {
+  color: #569CD6;
+}
+
+.code-string {
+  color: #CE9178;
+}
+
+.code-comment {
+  color: #6A9955;
+}
