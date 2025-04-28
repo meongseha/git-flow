@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { TerminalSimulator } from "./TerminalSimulator";
+import { PullVsRebaseVisualization } from "./PullVsRebaseVisualization";
 
 interface TutorialStepsProps {
   currentStep: number;
@@ -853,6 +854,13 @@ export const TutorialSteps: React.FC<TutorialStepsProps> = ({
             </div>
           </div>
 
+          <div className="mt-4 mb-8">
+            <h3 className="text-lg font-semibold mb-4">
+              Visual Comparison: git pull vs git pull --rebase
+            </h3>
+            <PullVsRebaseVisualization />
+          </div>
+
           <div className="flex justify-between mt-6">
             <button
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center"
@@ -882,6 +890,147 @@ export const TutorialSteps: React.FC<TutorialStepsProps> = ({
         {tutorialContent[currentStep].title}
       </h3>
       {tutorialContent[currentStep].content}
+
+      {/* Branch Synchronization Section */}
+      <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-900 rounded-xl shadow-lg">
+        <h2 className="text-2xl font-bold mb-4 text-blue-800 dark:text-blue-300">
+          Branch Synchronization: Local ↔️ Remote
+        </h2>
+
+        <div className="space-y-6">
+          {/* List Remote Branches */}
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+            <h3 className="text-lg font-semibold mb-2 text-blue-700 dark:text-blue-400">
+              1. View Remote Branches
+            </h3>
+            <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded">
+              git remote -v
+            </code>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
+              Shows all remote repositories
+            </p>
+
+            <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded mt-3">
+              git branch -r
+            </code>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
+              Lists all remote branches
+            </p>
+
+            <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded mt-3">
+              git branch -a
+            </code>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
+              Shows both local and remote branches
+            </p>
+          </div>
+
+          {/* Push Local to Remote */}
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+            <h3 className="text-lg font-semibold mb-2 text-green-700 dark:text-green-400">
+              2. Push Local Branch to Remote
+            </h3>
+            <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded">
+              git push -u origin your-branch-name
+            </code>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
+              The <span className="font-semibold">-u</span> flag (or{" "}
+              <span className="font-semibold">--set-upstream</span>) sets up
+              tracking, linking your local and remote branches
+            </p>
+
+            <div className="mt-4 bg-blue-50 dark:bg-gray-900 p-3 rounded border border-blue-200 dark:border-blue-800">
+              <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-2">
+                About "Publish Branch" in VS Code
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300">
+                When you see "Publish Branch" in VS Code, it means you have a
+                local branch that hasn't been pushed to the remote repository
+                yet. Clicking it will execute{" "}
+                <code className="bg-blue-100 dark:bg-gray-800 px-1 rounded">
+                  git push -u origin branch-name
+                </code>{" "}
+                which will:
+              </p>
+              <ul className="mt-2 space-y-1 list-disc pl-4 text-gray-600 dark:text-gray-400">
+                <li>Create the branch on the remote if it doesn't exist</li>
+                <li>Push all your commits to that branch</li>
+                <li>Set up tracking for future pushes and pulls</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Git Pull vs Git Pull Rebase */}
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+            <h3 className="text-lg font-semibold mb-2 text-purple-700 dark:text-purple-400">
+              3. Git Pull vs Git Pull Rebase
+            </h3>
+
+            <div className="mb-4">
+              <h4 className="font-medium text-purple-600 dark:text-purple-300">
+                Regular Git Pull (merge)
+              </h4>
+              <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded">
+                git pull
+              </code>
+              <p className="mt-2 text-gray-600 dark:text-gray-300">
+                • Creates a merge commit
+                <br />
+                • Preserves complete history
+                <br />• Can make history look messy with many branches
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-purple-600 dark:text-purple-300">
+                Git Pull Rebase
+              </h4>
+              <code className="block bg-gray-100 dark:bg-gray-900 p-2 rounded">
+                git pull --rebase
+              </code>
+              <p className="mt-2 text-gray-600 dark:text-gray-300">
+                • Replays your commits on top of remote changes
+                <br />
+                • Creates linear, cleaner history
+                <br />• Better for feature branches
+              </p>
+            </div>
+          </div>
+
+          {/* Pro Tips */}
+          <div className="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+            <h4 className="font-bold text-blue-800 dark:text-blue-300 flex items-center">
+              <span className="mr-2">💡</span> Pro Tips
+            </h4>
+            <ul className="mt-2 space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                • Always fetch before pulling:{" "}
+                <code className="text-sm bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
+                  git fetch --all
+                </code>
+              </li>
+              <li>
+                • Check branch status:{" "}
+                <code className="text-sm bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
+                  git status
+                </code>
+              </li>
+              <li>
+                • Delete local branch after merge:{" "}
+                <code className="text-sm bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
+                  git branch -d branch-name
+                </code>
+              </li>
+              <li>
+                • Delete remote branch:{" "}
+                <code className="text-sm bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
+                  git push origin --delete branch-name
+                </code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
