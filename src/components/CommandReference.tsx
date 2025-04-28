@@ -46,6 +46,63 @@ export const CommandReference: React.FC<CommandReferenceProps> = ({
         description: "Update remote refs along with associated objects",
         usage: "git push origin <branch>",
       },
+      {
+        command: "git checkout",
+        description: "Switch branches or restore working tree files",
+        usage: "git checkout <branch>",
+      },
+      {
+        command: "git push -u origin branch-name",
+        description: "Push a branch and set up tracking",
+        usage: "git push -u origin branch-name",
+      },
+      {
+        command: "git branch",
+        description: "List all branches",
+        usage: "git branch",
+      },
+      {
+        command: "git branch -d",
+        description: "Delete a branch",
+        usage: "git branch -d <branch>",
+      },
+      {
+        command: "git merge",
+        description: "Merge a branch into the current branch",
+        usage: "git merge <branch>",
+      },
+      {
+        command: "git replace",
+        description: "Replace a commit in one branch with another",
+        usage: "git replace <old-commit> <new-commit>",
+      },
+      {
+        command: "git push --all origin",
+        description:
+          "This will push all your local branches to the remote named <origin>.",
+        usage: "git push --all origin",
+      },
+      {
+        command: "git push --tags",
+        description:
+          "This will push all your local tags to the remote named <origin>.",
+        usage: "git push --tags",
+      },
+      {
+        command: "git fetch",
+        description: "Fetch objects from another repository",
+        usage: "git fetch <remote>",
+      },
+      {
+        command: "git pull",
+        description: "Fetch from and integrate with another repository",
+        usage: "git pull",
+      },
+      {
+        command: "git stash",
+        description: "Stash changes in working directory",
+        usage: "git stash",
+      },
     ];
 
     // Step-specific commands
